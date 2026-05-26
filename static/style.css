@@ -16,12 +16,74 @@ body {
     justify-content: center;
     align-items: center;
     padding: 2rem;
+    position: relative;
+    overflow-x: hidden;
 }
 
-/* Основной контейнер для контента (можно обернуть, но стили и так работают) */
-h1, p, form, blockquote, a {
-    max-width: 800px;
+/* Фоновые смайлики */
+body::before,
+body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+body::before {
+    background-image:
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='none' stroke='rgba(255,255,255,0.08)' stroke-width='3'/%3E%3Ccircle cx='30' cy='40' r='4' fill='rgba(255,255,255,0.1)'/%3E%3Ccircle cx='70' cy='40' r='4' fill='rgba(255,255,255,0.1)'/%3E%3Cpath d='M35 65 Q50 80 65 65' fill='none' stroke='rgba(255,255,255,0.12)' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E"),
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='none' stroke='rgba(255,255,255,0.08)' stroke-width='3'/%3E%3Ccircle cx='30' cy='42' r='4' fill='rgba(255,255,255,0.1)'/%3E%3Ccircle cx='70' cy='42' r='4' fill='rgba(255,255,255,0.1)'/%3E%3Cpath d='M40 72 L60 72' stroke='rgba(255,255,255,0.12)' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E"),
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='none' stroke='rgba(255,255,255,0.08)' stroke-width='3'/%3E%3Cpath d='M30 40 L40 48 M70 40 L60 48' stroke='rgba(255,255,255,0.12)' stroke-width='3' stroke-linecap='round' fill='none'/%3E%3Cpath d='M40 68 Q50 58 60 68' fill='none' stroke='rgba(255,255,255,0.12)' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-size: 80px 80px;
+    background-position: 0 0;
+    opacity: 0.6;
+}
+
+/* Дополнительный слой с разбросанными крупными смайликами */
+body::after {
+    background-image:
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Ccircle cx='60' cy='60' r='50' fill='none' stroke='rgba(255,255,255,0.06)' stroke-width='2.5'/%3E%3Ccircle cx='35' cy='48' r='5' fill='rgba(255,255,255,0.08)'/%3E%3Ccircle cx='85' cy='48' r='5' fill='rgba(255,255,255,0.08)'/%3E%3Cpath d='M40 78 Q60 98 80 78' fill='none' stroke='rgba(255,255,255,0.1)' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E"),
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Ccircle cx='60' cy='60' r='50' fill='none' stroke='rgba(255,255,255,0.06)' stroke-width='2.5'/%3E%3Ccircle cx='35' cy='50' r='5' fill='rgba(255,255,255,0.08)'/%3E%3Ccircle cx='85' cy='50' r='5' fill='rgba(255,255,255,0.08)'/%3E%3Cpath d='M45 85 L75 85' stroke='rgba(255,255,255,0.1)' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E"),
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Ccircle cx='60' cy='60' r='50' fill='none' stroke='rgba(255,255,255,0.06)' stroke-width='2.5'/%3E%3Cpath d='M35 48 L48 55 M85 48 L72 55' stroke='rgba(255,255,255,0.1)' stroke-width='3' stroke-linecap='round' fill='none'/%3E%3Cpath d='M48 80 Q60 72 72 80' fill='none' stroke='rgba(255,255,255,0.1)' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-size: 150px 150px, 180px 180px, 130px 130px;
+    background-position:
+        10% 15%,
+        85% 70%,
+        50% 85%;
+    opacity: 0.4;
+}
+
+/* Анимация для плавающих смайликов */
+@keyframes float1 {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-15px) rotate(5deg); }
+}
+
+@keyframes float2 {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(15px) rotate(-5deg); }
+}
+
+@keyframes float3 {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-10px) rotate(-3deg); }
+}
+
+/* Добавляем отдельные анимированные смайлики через дополнительные элементы */
+body {
+    isolation: isolate;
+}
+
+/* Основной контейнер для контента (поднимаем над фоном) */
+h1, p, form, blockquote, a, .result {
+    position: relative;
+    z-index: 1;
 }
 
 /* Заголовки */
@@ -110,18 +172,24 @@ button:active {
     transform: scale(0.98);
 }
 
-/* Блок с цитатой (результат) */
-blockquote {
+/* Блок с результатом */
+.result {
     background: rgba(255, 255, 255, 0.2);
     backdrop-filter: blur(10px);
-    border-left: 5px solid white;
     padding: 1.2rem 1.5rem;
     margin: 1rem auto;
     border-radius: 16px;
     color: white;
-    font-size: 1.2rem;
-    font-style: italic;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.result h3 {
+    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+}
+
+.result p {
+    margin-bottom: 0.5rem;
 }
 
 /* Ссылка "Вернуться назад" */
@@ -143,11 +211,6 @@ a:hover {
     transform: translateY(-2px);
 }
 
-/* Дополнительная стилизация для страницы результата */
-body:has(blockquote) p strong {
-    color: #ffe6b3;
-}
-
 /* Адаптивность для телефонов */
 @media (max-width: 600px) {
     body {
@@ -162,15 +225,18 @@ body:has(blockquote) p strong {
         padding: 1.5rem;
     }
 
-    blockquote {
-        font-size: 1rem;
+    .result {
         padding: 1rem;
+    }
+
+    body::after {
+        background-size: 100px 100px, 120px 120px, 90px 90px;
     }
 }
 
 .movie-list {
-    margin-top: 10px
-    padding-left: 10px
+    margin-top: 10px;
+    padding-left: 10px;
 }
 
 .movie-list p {
