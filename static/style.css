@@ -1,0 +1,179 @@
+/* style.css — стили для вашего первого сайта с мозгами */
+
+/* Общие настройки для всей страницы */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+}
+
+/* Основной контейнер для контента (можно обернуть, но стили и так работают) */
+h1, p, form, blockquote, a {
+    max-width: 800px;
+    width: 100%;
+}
+
+/* Заголовки */
+h1 {
+    font-size: 2.5rem;
+    color: white;
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+    margin-bottom: 1rem;
+    text-align: center;
+    letter-spacing: -0.5px;
+}
+
+/* Обычные параграфы */
+p {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1.1rem;
+    line-height: 1.5;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+/* Форма — белая карточка */
+form {
+    background: white;
+    padding: 2rem;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    margin-bottom: 1.5rem;
+    transition: transform 0.2s ease;
+}
+
+form:hover {
+    transform: translateY(-5px);
+}
+
+/* Метка (label) */
+label {
+    font-weight: 600;
+    color: #333;
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+}
+
+/* Текстовое поле */
+textarea {
+    width: 100%;
+    padding: 12px 15px;
+    font-size: 1rem;
+    font-family: inherit;
+    border: 2px solid #e0e0e0;
+    border-radius: 12px;
+    resize: vertical;
+    transition: border 0.2s, box-shadow 0.2s;
+    margin-bottom: 1rem;
+}
+
+textarea:focus {
+    outline: none;
+    border-color: #764ba2;
+    box-shadow: 0 0 0 3px rgba(118, 75, 162, 0.2);
+}
+
+/* Кнопка */
+button {
+    background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 40px;
+    cursor: pointer;
+    transition: opacity 0.2s, transform 0.1s;
+    width: 100%;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+button:hover {
+    opacity: 0.9;
+    transform: scale(1.01);
+}
+
+button:active {
+    transform: scale(0.98);
+}
+
+/* Блок с цитатой (результат) */
+blockquote {
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border-left: 5px solid white;
+    padding: 1.2rem 1.5rem;
+    margin: 1rem auto;
+    border-radius: 16px;
+    color: white;
+    font-size: 1.2rem;
+    font-style: italic;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Ссылка "Вернуться назад" */
+a {
+    display: inline-block;
+    background: white;
+    color: #764ba2;
+    text-decoration: none;
+    padding: 10px 24px;
+    border-radius: 40px;
+    font-weight: 600;
+    margin-top: 1rem;
+    transition: background 0.2s, transform 0.1s;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+a:hover {
+    background: #f0eef7;
+    transform: translateY(-2px);
+}
+
+/* Дополнительная стилизация для страницы результата */
+body:has(blockquote) p strong {
+    color: #ffe6b3;
+}
+
+/* Адаптивность для телефонов */
+@media (max-width: 600px) {
+    body {
+        padding: 1rem;
+    }
+
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    form {
+        padding: 1.5rem;
+    }
+
+    blockquote {
+        font-size: 1rem;
+        padding: 1rem;
+    }
+}
+
+.movie-list {
+    margin-top: 10px
+    padding-left: 10px
+}
+
+.movie-list p {
+    margin: 8px 0;
+    line-height: 1.4;
+}
